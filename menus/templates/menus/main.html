@@ -1,6 +1,6 @@
 <ul>
     {% for  menu in menus %}
-        {# "menu" variable loaded from element.html #}
-        {{ menu }}
+        {# "menu.as_element" loads html from element.html #}
+        {{ menu.as_element }}
     {% endfor %}
 </ul>

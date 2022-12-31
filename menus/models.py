@@ -12,8 +12,13 @@ class Menu(models.Model):
     def __repr__(self) -> str:
         return str(self)
 
-    def as_list(self) -> str:
+    def as_element(self) -> str:
+        """Renders model as html list element"""
         return render_to_string('menus/element.html', context={'menu': self})
+
+    def submenus_as_list(self) -> str:
+        """Renders model submenus as html list"""
+        return render_to_string('menus/main.html', {'menus': self.submenus.all()})
 
 
 class Relationship(models.Model):

@@ -5,11 +5,6 @@ from ..models import Menu
 register = template.Library()
 
 
-def render_menu(menu: Menu) -> str:
-    """Renders menu in html format"""
-    return render_to_string('menus/main.html', {'menus': menu.submenus.all()})
-
-
 @register.simple_tag
 def draw_menu(menu_name: str, doesnotexist_ok: bool = False) -> str:
     """Tag, that renders menu in html page with given page name. If nothing found, raises exception
@@ -33,8 +28,10 @@ def draw_menu(menu_name: str, doesnotexist_ok: bool = False) -> str:
             # Return empty string
             return ''
 
+        # Empty tag is disallowed
+
         # Raise exception
         raise Menu.DoesNotExist("Template trying to get menu, that doesn't exist")
 
     # Menu found. Render html list
-    return render_menu(menu)
+    return menu.submenus_as_list()

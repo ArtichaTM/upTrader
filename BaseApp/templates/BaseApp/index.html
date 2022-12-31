@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    {% draw_menu "root" %}
-    {% draw_menu "root_2" %}
+    {% draw_menu "root" %} {# root #}
+    {% draw_menu "root_2" %} {# root/root_2 #}
+    {% draw_menu "main_menu" 1 %} {# Doesn't exist #}
 </head>
 <body>
 
